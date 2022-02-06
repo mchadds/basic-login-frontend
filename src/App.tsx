@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { ProviderAPI } from './api/provider.api';
+import { ProviderDTO } from './api/dto/provider.dto';
 
 
 const PROVIDERS_ENDPOINT = 'http://localhost:3000/providers';
 //TODO inteface for providers so useState is not any
 function App() {
-  const [providers, setProviders] = useState<any[]>([]);
+  const [providers, setProviders] = useState<ProviderDTO[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   useEffect(() => {
@@ -16,13 +18,13 @@ function App() {
     const fetchProviders = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(PROVIDERS_ENDPOINT);
+        const response = await ProviderAPI.getAllProviders();
+        //const response = await axios.get(PROVIDERS_ENDPOINT);
         setProviders(response.data);
         setIsLoading(false);
       } catch (error: any) {
         setError(error);
       }
-      
     }
 
     fetchProviders();
@@ -39,11 +41,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          {providers.map((provider) => (
-          <div>
+          {providers.map((provider) => {
+         return <div>
             <div>{provider.name}</div><div>{provider.id}</div>
           </div> 
-          ))}        
+          })}        
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
