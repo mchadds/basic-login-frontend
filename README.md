@@ -25,7 +25,7 @@ Once the application has been cloned from the remote repo install packages by ru
 To start the front end of the application, run
 ### `npm start` at the root level of the project
 
-Runs the app in the development mode.\
+Run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) if the front end of the application is started first or [http://localhost:3001](http://localhost:3001) if the backend of the application is started first 
 
 
