@@ -83,9 +83,9 @@ const App = () => {
           validationSchema={validationSchema}
         >
           {(formik) => (
-            <form onSubmit={formik.handleSubmit}>
+            <form style={{ backgroundColor: 'lightblue' }} onSubmit={formik.handleSubmit}>
               <FormControl fullWidth>
-                <InputLabel id="providerLbl"
+                <InputLabel style={{ fontSize: 22 }}id="providerLbl"
                 >Provider</InputLabel>
                 <Select
                   id="providerId"
