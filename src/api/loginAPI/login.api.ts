@@ -1,14 +1,13 @@
 import axios, { AxiosResponse } from "axios";
-import { ProviderDTO } from "../dto/providerDto/provider.dto";
+import { LoginDTO } from "../dto/loginDto/login.dto";
+import { LOGIN_ENDPOINT } from "../endpoints/endpoints";
 
-// connection between the front end and the backend (api) of the application
-const LOGIN_ENDPOINT = 'http://localhost:3000/login';
-
+// class that represents the connection to the POST login endpoint
 export class LoginAPI {
-    public static async validateLogin(values: {provider: number, username: string, password: string}): Promise<AxiosResponse<any, any>> {
+    public static async validateLogin(values: LoginDTO): Promise<AxiosResponse<any, any>> {
 
         return await axios.post(LOGIN_ENDPOINT, {
-            providerId: values.provider,
+            providerId: values.providerId,
             username: values.username,
             password: values.password
           });
