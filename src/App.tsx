@@ -119,7 +119,7 @@ const App = () => {
                 type="submit" 
                 color="primary" 
                 variant="contained"
-                style={{marginTop: 30}}
+                style={{marginTop: 30, marginBottom: 10}}
               >
                 Submit
               </Button>
