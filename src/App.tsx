@@ -1,37 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import { ProviderAPI } from './api/providerAPI/provider.api';
 import { ProviderDTO } from './api/dto/providerDto/provider.dto';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import InputField from './components/InputField/InputField';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { LoginAPI } from './api/loginAPI/login.api';
-import { red } from '@material-ui/core/colors';
 
+// schema validation for formik form
 const validationSchema = yup.object({
-  provider: yup.number().required('Provider must be selected'),
+  providerId: yup.number().required('Provider must be selected'),
   username: yup.string().required('Username is required'),
   password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required')
 });
 
 const App = () => {
+  // insurance providers for the drop down selection
   const [providers, setProviders] = useState<ProviderDTO[]>([]);
+  // while retrieving data from api (if it was ever not local)
   const [isLoading, setIsLoading] = useState(false);
+  // unable to load insurance providers
   const [error, setError] = useState<AxiosError>();
 
+  // if user successfully logs in
   const [invalidLogin, setInvalidLogin] = useState<boolean>(true);
+  // if user attempts an invalid login
   const [validLogin, setValidLogin] = useState<boolean>(false);
   useEffect(() => {
     // this block will run on mount
-
     const fetchProviders = async () => {
       setIsLoading(true);
       try {
+        // retrieve insurance providers from endpoint
         const response = await ProviderAPI.getAllProviders();
         setProviders(response.data);
         setIsLoading(false);
@@ -43,10 +47,6 @@ const App = () => {
     fetchProviders();
   }, []);
 
-  if (error) {
-    return <div>{error.response?.statusText}</div>
-  }
-
   if (isLoading) {
     <img src={logo} className="App-logo" alt="logo" />
   }
@@ -57,9 +57,9 @@ const App = () => {
         <h1>Login</h1>
         <Formik
           initialValues={{
-            provider: 0,
+            providerId: 0,
             username: '',
-            password: ''
+            password: '' 
           }}
           onSubmit={async values => {
             setInvalidLogin(true);
@@ -88,12 +88,12 @@ const App = () => {
                 <InputLabel id="providerLbl"
                 >Provider</InputLabel>
                 <Select
-                  id="provider"
-                  name="provider"
+                  id="providerId"
+                  name="providerId"
                   label="Provider"
-                  value={formik.values.provider}
+                  value={formik.values.providerId}
                   onChange={formik.handleChange}
-                  error={formik.touched.provider && Boolean(formik.errors.provider)}
+                  error={formik.touched.providerId && Boolean(formik.errors.providerId)}
                 >
                   {providers?.map(provider => {
                       return (
@@ -103,7 +103,7 @@ const App = () => {
                       );
                   })}
                 </Select>
-                {formik.touched.provider && formik.values.provider === 0 && <FormHelperText style={{ color: 'red '}}>Provider is required</FormHelperText>}
+                {formik.touched.providerId && formik.values.providerId === 0 && <FormHelperText style={{ color: 'red '}}>Provider is required</FormHelperText>}
               </FormControl>
               <InputField
                 name="username"
@@ -112,7 +112,7 @@ const App = () => {
               <InputField
                 name="password"
                 label="Password"
-                //type={'password'}
+                type={'password'}
               />
 
               <Button 
