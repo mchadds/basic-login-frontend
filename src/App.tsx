@@ -4,6 +4,14 @@ import './App.css';
 import axios, { AxiosResponse } from 'axios';
 import { ProviderAPI } from './api/provider.api';
 import { ProviderDTO } from './api/dto/provider.dto';
+import { Formik, Field, Form, FormikHelpers } from 'formik';
+
+interface Values {
+  provider: string;
+  username: string;
+  password: string;
+}
+
 
 
 const PROVIDERS_ENDPOINT = 'http://localhost:3000/providers';
@@ -40,7 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
           {providers.map((provider) => {
          return <div>
             <div>{provider.name}</div><div>{provider.id}</div>
@@ -57,7 +65,44 @@ function App() {
         >
           
         </a>
-      </header>
+      </header> */}
+      <div>
+      <h1>Signup</h1>
+      <Formik
+        initialValues={{
+          provider: '',
+          username: '',
+          password: '',
+        }}
+        onSubmit={(
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 500);
+        }}
+      >
+        <Form>
+          <label htmlFor="firstName">Provider</label>
+          <Field id="firstName" name="firstName" placeholder="John" />
+
+          <label htmlFor="lastName">Username</label>
+          <Field id="lastName" name="lastName" placeholder="Doe" />
+
+          <label htmlFor="email">Password</label>
+          <Field
+            id="email"
+            name="email"
+            placeholder="john@acme.com"
+            type="email"
+          />
+
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
+    </div>
     </div>
   );
 }
