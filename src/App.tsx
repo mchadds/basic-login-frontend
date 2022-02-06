@@ -65,20 +65,15 @@ const App = () => {
             setInvalidLogin(true);
             setValidLogin(false);
             try {
-            const response = await LoginAPI.validateLogin(values);
+            await LoginAPI.validateLogin(values);
             setValidLogin(true);
-            console.log("RESPONSE: ", response);
+
             } catch (error: any) {
-
-              console.log("ERROR: ", error);
-
               if (error.response.status === 401) {
                 setInvalidLogin(false);
                 setValidLogin(false);
               }
-              
             }
-            alert(JSON.stringify(values, null, 2))
           }}
           validationSchema={validationSchema}
         >
