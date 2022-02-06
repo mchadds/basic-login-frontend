@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Basic Login Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This project is the frontend portion of a basic login application. It calls a local api project [basic-login-backend](https://github.com/mchadds/basic-login-backend)
+
+## Functionality
+- Users can login from the main login page
+- The login form input fields have error handling for required fields and certain field specifications
+- Users are informed of a successful or unsuccessful login
+
+## Tools & Technologies
+- [React](https://reactjs.org/) Javascript library for building user interfaces
+- [Axios](https://axios-http.com/docs/intro) A promise-based HTTP Client for node.js
+- [Material UI](https://mui.com/) React UI Library
+- [Formik](https://formik.org/docs/overview) Form UI and state management
 
 ## Available Scripts
 
@@ -44,3 +56,36 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+# Shredata
+
+
+## Description
+Shredata (Snow Intelligence) is a project that allows users to compare recent snowfalls of their favourite mountains. Have you ever wondered which hill to go to based on the best new snow? Checking every single resort website for the snow report is time consuming (and inconvenient). Shredata has all this information in one place (with daily updates) so you can find the most snow with ease! This idea was born out of a passion for being outside and utilizing the data at your fingertips.
+
+## Demo
+This brief gif demonstrates the power and simplicity of the Shredata application:
+
+![Demo Video](https://github.com/mchadds/Shredata/blob/master/imgs/DemoApp.gif)
+
+
+## Functionality
+- Users can select a snowfall interval (or base) by clicking the blue interval buttons at the top of the application
+- This will cause the snowfall information for the selected interval of each resort to appear in the bar chart
+- The circle markers on the map (representing each resort) will render with a radius related to the snowfall from the selected interval
+- The circle markers include a tooltip containing the resorts name and the snowfall value for the selected interval
+
+## Tools
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) Cloud database instance
+- [Node.js](https://nodejs.org/en/) JavaScript runtime environment
+- [Express.js](https://expressjs.com/) Framework for API
+- [React.js](https://reactjs.org/) Front end design
+
+## Languages
+- [TypeScript](https://www.typescriptlang.org/)
+- [Python](https://www.python.org/) For webscraping snowfall data
+
+
+## Happy Shredding!
